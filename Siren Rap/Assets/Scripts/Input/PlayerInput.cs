@@ -26,8 +26,14 @@ public class PlayerInput : MonoBehaviour
         controls = new InputMaster();
 
         //hook up controls
-        controls.Test.Movement.started += context => SetBlock(context.ReadValue<Vector2>());
-        controls.Test.Movement.canceled += context => ResetBlock(context.action.activeControl.displayName);
+        controls.Test.PressUp.started += context => SetUpBlock();
+        controls.Test.PressUp.canceled += context => ResetUpBlock();
+        controls.Test.PressDown.started += context => SetDownBlock();
+        controls.Test.PressDown.canceled += context => ResetDownBlock();
+        controls.Test.PressLeft.started += context => SetLeftBlock();
+        controls.Test.PressLeft.canceled += context => ResetLeftBlock();
+        controls.Test.PressRight.started += context => SetRightBlock();
+        controls.Test.PressRight.canceled += context => ResetRightBlock();
     }
 
     // Update is called once per frame
@@ -36,67 +42,76 @@ public class PlayerInput : MonoBehaviour
         
     }
 
-    public void SetBlock(Vector2 blockDirection)
+    public void SetUpBlock()
     {
-        if(blockDirection.x < 0)
-        {
-            //replace left black square with purple sqaure
-            Instantiate(purpleSquare, leftSquare.transform.position, Quaternion.identity);
+        //activate red sqaure
+        redSquare.SetActive(true);
 
-            //disable left square
-            leftSquare.SetActive(false);
-
-        }
-        else if(blockDirection.x > 0)
-        {
-            //replace right black square with blue sqaure
-            Instantiate(blueSquare, rightSquare.transform.position, Quaternion.identity);
-
-            //disable right square
-            rightSquare.SetActive(false);
-        }
-        else if(blockDirection.y > 0)
-        {
-            //replace top black square with red sqaure
-            Instantiate(redSquare, upSquare.transform.position, Quaternion.identity);
-
-            //disable top square
-            upSquare.SetActive(false);
-        }
-        else if(blockDirection.y < 0)
-        {
-            //replace bottom black square with green sqaure
-            Instantiate(greenSquare, downSquare.transform.position, Quaternion.identity);
-
-            //disable bottom square
-            downSquare.SetActive(false);
-        }
+        //disable top square
+        upSquare.SetActive(false);
     }
 
-    public void ResetBlock(string pressedButton)
+    public void ResetUpBlock()
     {
-        Debug.Log("ToString contents: " + pressedButton);
+        //enable top black square
+        upSquare.SetActive(true);
 
-        if(pressedButton.Contains("Up"))
-        {
-            //enable top black square
-            upSquare.SetActive(true);
-        }
-        else if(pressedButton.Contains("Left"))
-        {
-            //enable left black square
-            leftSquare.SetActive(true);
-        }
-        else if (pressedButton.Contains("Right"))
-        {
-            //enable right square
-            rightSquare.SetActive(true);
-        }
-        else if (pressedButton.Contains("Down"))
-        {
-            //enable right square
-            downSquare.SetActive(true);
-        }
+        //disable red square
+        redSquare.SetActive(false);
+    }
+
+    public void SetDownBlock()
+    {
+        //active green sqaure
+        greenSquare.SetActive(true);
+
+        //disable bottom square
+        downSquare.SetActive(false);
+    }
+
+    public void ResetDownBlock()
+    {
+        //enable bottom square
+        downSquare.SetActive(true);
+
+        //disable green square
+        greenSquare.SetActive(false);
+    }
+
+    public void SetLeftBlock()
+    {
+        //activate purple sqaure
+        purpleSquare.SetActive(true);
+
+        //disable left square
+        leftSquare.SetActive(false);
+    }
+
+    public void ResetLeftBlock()
+    {
+        //enable left black square
+        leftSquare.SetActive(true);
+
+        //disable purple square
+        purpleSquare.SetActive(false);
+    }
+
+    public void SetRightBlock()
+    {
+        //activate blue sqaure
+        blueSquare.SetActive(true);
+
+        //disable right square
+        rightSquare.SetActive(false);
+    }
+
+    public void ResetRightBlock()
+    {
+        //enable right square
+        rightSquare.SetActive(true);
+
+        //disable blue square
+        blueSquare.SetActive(false);
     }
 
     private void OnEnable()
