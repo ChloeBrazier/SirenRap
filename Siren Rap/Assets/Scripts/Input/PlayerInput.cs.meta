@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 561c4133bc7bf9f49b443925112307d5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - redSquare: {instanceID: 0}
+  - blueSquare: {instanceID: 0}
+  - purpleSquare: {instanceID: 0}
+  - greenSquare: {instanceID: 0}
+  - blackSquare: {instanceID: 0}
+  - upSquare: {instanceID: 0}
+  - downSquare: {instanceID: 0}
+  - leftSquare: {instanceID: 0}
+  - rightSquare: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
