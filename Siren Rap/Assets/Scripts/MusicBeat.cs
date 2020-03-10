@@ -27,8 +27,7 @@ public class MusicBeat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //set the distance to increment the beat by each frame
-        moveIncrement = (moveDistance / moveTime) * Time.deltaTime;
+        
     }
 
     // Update is called once per frame
@@ -38,5 +37,15 @@ public class MusicBeat : MonoBehaviour
         Vector3 tempPos = transform.position;
         tempPos.x += moveIncrement;
         transform.position = tempPos;
+    }
+
+    public void SetMoveIncrement(float distance, float time)
+    {
+        //set move distance and move time
+        moveDistance = distance;
+        moveTime = time;
+
+        //set the distance to increment the beat by each frame
+        moveIncrement = (moveDistance / moveTime) * Time.deltaTime;
     }
 }

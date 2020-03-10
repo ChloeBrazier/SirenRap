@@ -20,6 +20,9 @@ public class SongManager : MonoBehaviour
     //the audio source for the level's song
     private AudioSource levelSong;
 
+    //queue of actionable beats
+    private Queue<MusicBeat> playableNotes;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +32,6 @@ public class SongManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        
+        //spawn notes 
     }
 }
