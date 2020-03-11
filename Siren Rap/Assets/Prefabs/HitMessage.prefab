@@ -95,3 +95,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeSprites:
   - {fileID: 21300000, guid: b24a23c6f530420488a99b0f224753c5, type: 3}
+  - {fileID: 21300000, guid: 95db686d5e425364db8469e419a92331, type: 3}
+  - {fileID: 21300000, guid: 0fd9e696a2dfaff418eb7005cc38dd48, type: 3}

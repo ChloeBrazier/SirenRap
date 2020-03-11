@@ -130,18 +130,30 @@ public class MusicBeat : MonoBehaviour
         switch (hitType)
         {
             case HitType.Perfect:
-                Debug.Log("PERFECT");
+
+                //spawn hit message with a type of perfect
+                SpawnHitMessage(HitType.Perfect);
+
                 break;
             case HitType.Good:
-                Debug.Log("GOOD");
+
+                //spawn hit message with a type of good
+                SpawnHitMessage(HitType.Good);
+
                 break;
             case HitType.Miss:
 
-                //spawn hit message and set its' type
-                GameObject newMessage = Instantiate(hitMessage, transform.position, Quaternion.identity);
-                newMessage.GetComponent<HitMessage>().SetMessageType(HitType.Miss);
+                //spawn hit message with a type of miss
+                SpawnHitMessage(HitType.Miss);
 
                 break;
         }
+    }
+
+    public void SpawnHitMessage(HitType type)
+    {
+        //spawn hit message and set its' type
+        GameObject newMessage = Instantiate(hitMessage, transform.position, Quaternion.identity);
+        newMessage.GetComponent<HitMessage>().SetMessageType(type);
     }
 }

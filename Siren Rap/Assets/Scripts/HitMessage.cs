@@ -62,10 +62,10 @@ public class HitMessage : MonoBehaviour
                 GetComponent<SpriteRenderer>().sprite = typeSprites[0];
                 break;
             case HitType.Perfect:
-                GetComponent<SpriteRenderer>().sprite = typeSprites[0];
+                GetComponent<SpriteRenderer>().sprite = typeSprites[1];
                 break;
             case HitType.Good:
-                GetComponent<SpriteRenderer>().sprite = typeSprites[0];
+                GetComponent<SpriteRenderer>().sprite = typeSprites[2];
                 break;
         }
     }
