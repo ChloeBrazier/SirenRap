@@ -36,6 +36,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Speed Up",
+                    "type": "Button",
+                    "id": "3df6d5b7-b8c4-4d8a-8a9e-1f47850b32f6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -168,6 +176,28 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "Press Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0c0c428a-96b3-43ba-96d4-4dcdf1c4c488",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Speed Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dc6a5bf5-49c4-4ce5-98a8-da10000ce1bf",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Speed Up",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

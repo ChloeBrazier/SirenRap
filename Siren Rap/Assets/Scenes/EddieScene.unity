@@ -157,6 +157,7 @@ MonoBehaviour:
   downSquare: {fileID: 2087902341}
   leftSquare: {fileID: 1712707241}
   rightSquare: {fileID: 1223247801}
+  songManager: {fileID: 1507439118}
 --- !u!4 &35167987
 Transform:
   m_ObjectHideFlags: 0
@@ -694,7 +695,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0014384985, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -705,7 +706,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 2}
+  m_Size: {x: 1.8922884, y: 2}
   m_EdgeRadius: 0
 --- !u!4 &1271005923
 Transform:
@@ -733,8 +734,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee215c0c6760a05479da93fc1596b08d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodRadius: 1
-  perfectRadius: 0.5
+  goodRadius: 0.5
+  perfectRadius: 0.25
 --- !u!212 &1271005925
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -924,7 +925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65522b14e4369bc4d890338f6da20623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatList: 0000000000000000010000000100000002000000
+  beatList: 00000000000000000100000001000000020000000200000003000000030000000000000001000000000000000100000002000000030000000200000003000000000000000200000003000000000000000100000000000000010000000000000002000000030000000000000001000000000000000100000000000000020000000300000000000000000000000100000000000000000000000200000003000000000000000000000001000000000000000000000003000000010000000200000000000000030000000100000000000000030000000100000002000000000000000300000001000000020000000000000003000000010000000200000000000000
   musicBeat: {fileID: 5051098260625304981, guid: 98e60be431cc4dd41a31955fce4070cc,
     type: 3}
   timeList:
@@ -933,6 +934,65 @@ MonoBehaviour:
   - 5.3
   - 6.3
   - 7.3
+  - 8.3
+  - 9.3
+  - 10.3
+  - 11.3
+  - 12.3
+  - 13.3
+  - 14.3
+  - 15.3
+  - 16.3
+  - 17.3
+  - 18.3
+  - 19.3
+  - 19.6
+  - 19.8
+  - 20.3
+  - 21.3
+  - 21.9
+  - 22.3
+  - 23.3
+  - 23.6
+  - 23.8
+  - 24.3
+  - 25.3
+  - 25.9
+  - 26.3
+  - 27.3
+  - 27.6
+  - 27.8
+  - 28.3
+  - 29.3
+  - 29.9
+  - 30.3
+  - 31.3
+  - 31.6
+  - 31.8
+  - 32.3
+  - 33.3
+  - 33.9
+  - 34.3
+  - 35
+  - 35.3
+  - 35.6
+  - 35.9
+  - 36.3
+  - 36.4
+  - 36.5
+  - 37
+  - 37.5
+  - 37.7
+  - 37.9
+  - 38.1
+  - 38.6
+  - 39.3
+  - 39.6
+  - 39.9
+  - 40.3
+  - 40.4
+  - 40.5
+  - 41
   beatSpawn: {fileID: 1414761171}
 --- !u!4 &1507439120
 Transform:

@@ -20,6 +20,10 @@ public class PlayerInput : MonoBehaviour
     public GameObject leftSquare;
     public GameObject rightSquare;
 
+    //songmanager object
+    [SerializeField]
+    private GameObject songManager;
+
     private void Awake()
     {
         //initialize controls
@@ -34,12 +38,33 @@ public class PlayerInput : MonoBehaviour
         controls.Test.PressLeft.canceled += context => ResetLeftBlock();
         controls.Test.PressRight.started += context => SetRightBlock();
         controls.Test.PressRight.canceled += context => ResetRightBlock();
+        controls.Test.SpeedUp.performed += context => FastForward();
+        controls.Test.SpeedUp.canceled += context => ResetTime();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void FastForward()
+    {
+        //save speed scale
+        float speedScale = 3.0f;
+        
+        //increase time scale
+        Time.timeScale = speedScale;
+
+        //increase audio pitch
+        songManager.GetComponent<AudioSource>().pitch = speedScale;
+    }
+
+    public void ResetTime()
+    {
+        //reset time scale and audio pitch
+        Time.timeScale = 1.0f;
+        songManager.GetComponent<AudioSource>().pitch = 1.0f;
     }
 
     public void SetUpBlock()
