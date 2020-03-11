@@ -21,17 +21,8 @@ public class SongManager : MonoBehaviour
     //transform for beat spawn
     public Transform beatSpawn;
 
-    //the player's score
-    private int playerScore;
-
     //the audio source for the level's song
     private AudioSource levelSong;
-
-    //queue of actionable beats
-    private Queue<MusicBeat> playableNotes;
-
-    //int for tracking consecutive hits
-    private int comboScore;
 
     //float for tracking level time
     private float levelTime;
@@ -40,6 +31,8 @@ public class SongManager : MonoBehaviour
     void Start()
     {
         //TODO: start playing the level song
+        levelSong = GetComponent<AudioSource>();
+        levelSong.Play();
 
         //set the first spawn time
         nextSpawnTime = timeList[0];

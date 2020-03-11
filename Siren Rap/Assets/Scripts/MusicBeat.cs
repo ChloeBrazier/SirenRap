@@ -10,6 +10,14 @@ public enum BeatType
     Right
 }
 
+//enum for hit type
+public enum HitType
+{
+    Good,
+    Perfect,
+    Miss
+}
+
 public class MusicBeat : MonoBehaviour
 {
     //the type of beat this beat is
@@ -27,19 +35,58 @@ public class MusicBeat : MonoBehaviour
     //the amount of distance to increment the beat by each frame
     private float moveIncrement;
 
+    //bool to check if the beat is active or not
+    private bool active = true;
+
+    //fade timer and tick
+    private float fadeTime = 0.3f;
+    private float fadeTick;
+
+    //beat sprite color and transparent color
+    private Color beatColor;
+    private Color transparent;
+
+    //hit message prefab
+    [SerializeField]
+    private GameObject hitMessage;
+
     // Start is called before the first frame update
     void Start()
     {
         SetMoveIncrement(15.3f, 5f);
+
+        //save beat's sprite color and transparent color
+        //beatColor = GetComponent<SpriteRenderer>().color;
+        transparent = new Color(beatColor.r, beatColor.b, beatColor.b, 0f);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         //move to the right based on increment distance every frame
-        Vector3 tempPos = transform.position;
-        tempPos.x += moveIncrement;
-        transform.position = tempPos;
+        if(active)
+        {
+            Vector3 tempPos = transform.position;
+            tempPos.x += moveIncrement;
+            transform.position = tempPos;
+        }
+        else
+        {
+            //fade the beat out
+            if(fadeTick <= 1)
+            {
+                //lerp sprite's transparencey to make it invisible
+                GetComponent<SpriteRenderer>().color = Color.Lerp(GetComponent<SpriteRenderer>().color, transparent, fadeTick);
+            }
+            else
+            {
+                //destroy this beat
+                Destroy(this.gameObject);
+            }
+
+            //increment fadeTick
+            fadeTick += Time.deltaTime / fadeTime;
+        }
     }
 
     public void SetMoveIncrement(float distance, float time)
@@ -71,6 +118,29 @@ public class MusicBeat : MonoBehaviour
                 break;
             case BeatType.Right:
                 GetComponent<SpriteRenderer>().sprite = typeSprites[3];
+                break;
+        }
+    }
+
+    public void HitBeat(HitType hitType)
+    {
+        //set active mode to false
+        active = false;
+
+        switch (hitType)
+        {
+            case HitType.Perfect:
+                Debug.Log("PERFECT");
+                break;
+            case HitType.Good:
+                Debug.Log("GOOD");
+                break;
+            case HitType.Miss:
+
+                //spawn hit message and set its' type
+                GameObject newMessage = Instantiate(hitMessage, transform.position, Quaternion.identity);
+                newMessage.GetComponent<HitMessage>().SetMessageType(HitType.Miss);
+
                 break;
         }
     }
