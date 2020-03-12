@@ -30,7 +30,7 @@ public class SongManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //TODO: start playing the level song
+        //start playing the level song
         levelSong = GetComponent<AudioSource>();
         levelSong.Play();
 
@@ -62,14 +62,21 @@ public class SongManager : MonoBehaviour
             {
                 //reset level time
                 levelTime = 0f;
-
-                //TODO: end the song
             }
+
             
         }
 
+        //end the level
+        if (levelSong.isPlaying != true)
+        {
+            //TODO: show end screen score stuff I guess
+            //but for now just do a debug.log because yeah
+            Debug.Log("#LevelIsOverParty");
+        }
+
         //increase level time if there are more notes to spawn
-        if(beatList.Count > 0)
+        if (beatList.Count > 0)
         {
             levelTime += Time.deltaTime;
         }
