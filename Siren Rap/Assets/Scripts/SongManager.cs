@@ -61,9 +61,6 @@ public class SongManager : MonoBehaviour
 
             //set beat type and move increment
             newBeat.GetComponent<MusicBeat>().SetBeatType(beatList[0]);
-            //debug hitbox position
-            Debug.Log("Camera box position: " + Camera.main.ViewportToWorldPoint(hitBox.transform.position));
-            Debug.Log("regualr box position: " + hitBox.transform.position);
             newBeat.GetComponent<MusicBeat>().SetMoveIncrement(hitBox.transform.position.x, beatSpeed);
 
             //set beat list and next beat time values

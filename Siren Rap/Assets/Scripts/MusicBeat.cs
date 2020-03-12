@@ -29,8 +29,6 @@ public class MusicBeat : MonoBehaviour
 
     //the distance the beat will move from its' spawn point to the end point
     public float moveDistance;
-    public float debugTime;
-    private float debugDistance;
 
     //the time it will take tehe beat to reach the end of the tail
     public float moveTime;
@@ -90,26 +88,16 @@ public class MusicBeat : MonoBehaviour
             fadeTick += Time.deltaTime / fadeTime;
         }
 
-        //check the time between perfect and disappearing
-        if(transform.position.x >= debugDistance)
-        {
-            debugTime += Time.deltaTime;
-        }
     }
 
     public void SetMoveIncrement(float boxLocation, float time)
     {
         //set move distance and move time
-        debugDistance = boxLocation;
         moveDistance = boxLocation - transform.position.x;
-        Debug.Log("Move distance: " + moveDistance);
         moveTime = time;
 
         //set the distance to increment the beat by each frame
         moveIncrement = (moveDistance / moveTime) * Time.deltaTime;
-
-        //debug move increment
-        Debug.Log("move increment: " + moveIncrement);
     }
 
     public void SetBeatType(BeatType type)
