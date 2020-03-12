@@ -21,9 +21,16 @@ public class SongManager : MonoBehaviour
     //transform for beat spawn
     public Transform beatSpawn;
 
+    //variable for beat timing
+    public float beatSpeed;
+
     //hitbox object
     [SerializeField]
     private GameObject hitBox;
+
+    //canvas object
+    [SerializeField]
+    private Canvas gameUI;
 
     //the audio source for the level's song
     private AudioSource levelSong;
@@ -46,16 +53,15 @@ public class SongManager : MonoBehaviour
     void FixedUpdate()
     {
         //spawn notes when their time comes up
-        if(levelTime >= nextSpawnTime)
+        if (levelTime >= nextSpawnTime)
         {
             //spawn new beat
             GameObject newBeat = Instantiate(musicBeat, beatSpawn.position, Quaternion.identity);
+            //GameObject newBeat = Instantiate(musicBeat, beatSpawn.position, Quaternion.identity, gameUI.transform);
 
             //set beat type and move increment
             newBeat.GetComponent<MusicBeat>().SetBeatType(beatList[0]);
-            //float hitX = Camera.main.WorldToScreenPoint(hitBox.transform.position).x;
-            newBeat.GetComponent<MusicBeat>().SetMoveIncrement(hitBox.transform.position.x, 5.2f);
-            //Debug.Log(hitBox.transform.position.x);
+            newBeat.GetComponent<MusicBeat>().SetMoveIncrement(hitBox.transform.position.x, beatSpeed);
 
             //set beat list and next beat time values
             beatList.RemoveAt(0);

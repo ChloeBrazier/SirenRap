@@ -42,11 +42,13 @@ public class HitManager : MonoBehaviour
         //create playable notes queue
         playableNotes = new Queue<MusicBeat>();
 
-        //set position based on screen size
-        float cameraWidth = (Camera.main.orthographicSize * 2) / Camera.main.aspect;
-        Vector2 tempPos = transform.position;
-        tempPos.x = cameraWidth * 2 / 3;
-        transform.position = tempPos;
+        //set random position based on screen size for testing
+        //float cameraWidth = (Camera.main.orthographicSize * 2) / Camera.main.aspect;
+        //float randWidth = cameraWidth / 2;
+        //randWidth = Random.Range(-randWidth, randWidth);
+        //Vector2 tempPos = transform.position;
+        //tempPos.x = randWidth;
+        //transform.position = tempPos;
     }
 
     // Update is called once per frame
@@ -79,6 +81,7 @@ public class HitManager : MonoBehaviour
             //count the beat as a missed beat and drop the combo
             collision.gameObject.GetComponent<MusicBeat>().HitBeat(HitType.Miss);
             comboScore = 0;
+            Debug.Log("Beat missed after: " + Time.time);
         }
     }
 

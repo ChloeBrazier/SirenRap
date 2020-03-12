@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum BeatType
 { 
@@ -75,6 +76,7 @@ public class MusicBeat : MonoBehaviour
             {
                 //lerp sprite's transparencey to make it invisible
                 GetComponent<SpriteRenderer>().color = Color.Lerp(GetComponent<SpriteRenderer>().color, transparent, fadeTick);
+                //GetComponent<Image>().color = Color.Lerp(GetComponent<Image>().color, transparent, fadeTick);
             }
             else
             {
@@ -91,13 +93,14 @@ public class MusicBeat : MonoBehaviour
     {
         //set move distance and move time
         moveDistance = boxLocation - transform.position.x;
+        Debug.Log("Move distance: " + moveDistance);
         moveTime = time;
 
         //set the distance to increment the beat by each frame
         moveIncrement = (moveDistance / moveTime) * Time.deltaTime;
 
         //debug move increment
-        //Debug.Log(moveIncrement);
+        Debug.Log("move increment: " + moveIncrement);
     }
 
     public void SetBeatType(BeatType type)
@@ -110,15 +113,19 @@ public class MusicBeat : MonoBehaviour
         {
             case BeatType.Up:
                 GetComponent<SpriteRenderer>().sprite = typeSprites[0];
+                //GetComponent<Image>().sprite = typeSprites[0];
                 break;
             case BeatType.Down:
                 GetComponent<SpriteRenderer>().sprite = typeSprites[1];
+                //GetComponent<Image>().sprite = typeSprites[1];
                 break;
             case BeatType.Left:
                 GetComponent<SpriteRenderer>().sprite = typeSprites[2];
+                //GetComponent<Image>().sprite = typeSprites[2];
                 break;
             case BeatType.Right:
                 GetComponent<SpriteRenderer>().sprite = typeSprites[3];
+                //GetComponent<Image>().sprite = typeSprites[3];
                 break;
         }
     }
@@ -156,5 +163,6 @@ public class MusicBeat : MonoBehaviour
         //spawn hit message and set its' type
         GameObject newMessage = Instantiate(hitMessage, transform.position, Quaternion.identity);
         newMessage.GetComponent<HitMessage>().SetMessageType(type);
+        newMessage.transform.SetParent(transform);
     }
 }

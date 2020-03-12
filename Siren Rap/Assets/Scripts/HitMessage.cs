@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HitMessage : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class HitMessage : MonoBehaviour
         {
             //lerp sprite's transparencey to make it invisible
             GetComponent<SpriteRenderer>().color = Color.Lerp(GetComponent<SpriteRenderer>().color, transparent, fadeTick);
+            //GetComponent<Image>().color = Color.Lerp(GetComponent<Image>().color, transparent, fadeTick);
         }
         else
         {
@@ -60,12 +62,15 @@ public class HitMessage : MonoBehaviour
         {
             case HitType.Miss:
                 GetComponent<SpriteRenderer>().sprite = typeSprites[0];
+                //GetComponent<Image>().sprite = typeSprites[0];
                 break;
             case HitType.Perfect:
                 GetComponent<SpriteRenderer>().sprite = typeSprites[1];
+                //GetComponent<Image>().sprite = typeSprites[1];
                 break;
             case HitType.Good:
                 GetComponent<SpriteRenderer>().sprite = typeSprites[2];
+                //GetComponent<Image>().sprite = typeSprites[2];
                 break;
         }
     }
