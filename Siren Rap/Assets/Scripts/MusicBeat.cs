@@ -97,7 +97,7 @@ public class MusicBeat : MonoBehaviour
         moveIncrement = (moveDistance / moveTime) * Time.deltaTime;
 
         //debug move increment
-        Debug.Log(moveIncrement);
+        //Debug.Log(moveIncrement);
     }
 
     public void SetBeatType(BeatType type)

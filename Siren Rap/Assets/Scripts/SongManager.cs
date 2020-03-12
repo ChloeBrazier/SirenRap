@@ -55,7 +55,7 @@ public class SongManager : MonoBehaviour
             newBeat.GetComponent<MusicBeat>().SetBeatType(beatList[0]);
             //float hitX = Camera.main.WorldToScreenPoint(hitBox.transform.position).x;
             newBeat.GetComponent<MusicBeat>().SetMoveIncrement(hitBox.transform.position.x, 5.2f);
-            Debug.Log(hitBox.transform.position.x);
+            //Debug.Log(hitBox.transform.position.x);
 
             //set beat list and next beat time values
             beatList.RemoveAt(0);
@@ -83,7 +83,7 @@ public class SongManager : MonoBehaviour
         }
 
         //increase level time if there are more notes to spawn
-        if (beatList.Count > 0)
+        if (beatList.Count > 0 && levelSong.isPlaying == true)
         {
             levelTime += Time.deltaTime;
         }
