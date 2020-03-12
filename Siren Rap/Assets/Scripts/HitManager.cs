@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HitManager : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class HitManager : MonoBehaviour
 
     //the player's score
     private int playerScore;
+
+    //text for score
+    public Text scoreText;
 
     //queue of actionable beats
     private Queue<MusicBeat> playableNotes;
@@ -37,11 +41,20 @@ public class HitManager : MonoBehaviour
     {
         //create playable notes queue
         playableNotes = new Queue<MusicBeat>();
+
+        //set position based on screen size
+        float cameraWidth = (Camera.main.orthographicSize * 2) / Camera.main.aspect;
+        Vector2 tempPos = transform.position;
+        tempPos.x = cameraWidth * 2 / 3;
+        transform.position = tempPos;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        //check player score and update UI accordingly
+        scoreText.text = "Score: " + playerScore;
+
         //TODO: check combo score and make the scene react accordingly
     }
 

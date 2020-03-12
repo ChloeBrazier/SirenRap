@@ -53,8 +53,6 @@ public class MusicBeat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetMoveIncrement(15.3f, 5f);
-
         //save beat's sprite color and transparent color
         //beatColor = GetComponent<SpriteRenderer>().color;
         transparent = new Color(beatColor.r, beatColor.b, beatColor.b, 0f);
@@ -89,14 +87,17 @@ public class MusicBeat : MonoBehaviour
         }
     }
 
-    public void SetMoveIncrement(float distance, float time)
+    public void SetMoveIncrement(float boxLocation, float time)
     {
         //set move distance and move time
-        moveDistance = distance;
+        moveDistance = boxLocation - transform.position.x;
         moveTime = time;
 
         //set the distance to increment the beat by each frame
         moveIncrement = (moveDistance / moveTime) * Time.deltaTime;
+
+        //debug move increment
+        Debug.Log(moveIncrement);
     }
 
     public void SetBeatType(BeatType type)

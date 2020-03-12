@@ -21,6 +21,10 @@ public class SongManager : MonoBehaviour
     //transform for beat spawn
     public Transform beatSpawn;
 
+    //hitbox object
+    [SerializeField]
+    private GameObject hitBox;
+
     //the audio source for the level's song
     private AudioSource levelSong;
 
@@ -47,8 +51,11 @@ public class SongManager : MonoBehaviour
             //spawn new beat
             GameObject newBeat = Instantiate(musicBeat, beatSpawn.position, Quaternion.identity);
 
-            //set beat type
+            //set beat type and move increment
             newBeat.GetComponent<MusicBeat>().SetBeatType(beatList[0]);
+            //float hitX = Camera.main.WorldToScreenPoint(hitBox.transform.position).x;
+            newBeat.GetComponent<MusicBeat>().SetMoveIncrement(hitBox.transform.position.x, 5.2f);
+            Debug.Log(hitBox.transform.position.x);
 
             //set beat list and next beat time values
             beatList.RemoveAt(0);
