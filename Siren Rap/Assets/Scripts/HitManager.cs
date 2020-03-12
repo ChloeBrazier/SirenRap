@@ -84,7 +84,7 @@ public class HitManager : MonoBehaviour
             //count the beat as a missed beat and drop the combo
             collision.gameObject.GetComponent<MusicBeat>().HitBeat(HitType.Miss);
             comboScore = 0;
-            Debug.Log("Beat missed after: " + Time.time);
+            Debug.Log("Beat missed after: " + collision.gameObject.GetComponent<MusicBeat>().debugTime);
         }
     }
 

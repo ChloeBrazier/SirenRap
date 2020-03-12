@@ -29,7 +29,7 @@ public class MusicBeat : MonoBehaviour
 
     //the distance the beat will move from its' spawn point to the end point
     public float moveDistance;
-    private float debugTime;
+    public float debugTime;
     private float debugDistance;
 
     //the time it will take tehe beat to reach the end of the tail
@@ -90,12 +90,8 @@ public class MusicBeat : MonoBehaviour
             fadeTick += Time.deltaTime / fadeTime;
         }
 
-        //check if the distance has been moved
+        //check the time between perfect and disappearing
         if(transform.position.x >= debugDistance)
-        {
-            Debug.Log("Time taken to reach hitbox: " + debugTime);
-        }
-        else
         {
             debugTime += Time.deltaTime;
         }
