@@ -43,7 +43,7 @@ public class SongManager : MonoBehaviour
     {
         //start playing the level song
         levelSong = GetComponent<AudioSource>();
-        levelSong.Play();
+        //levelSong.Play();
 
         //set the first spawn time
         nextSpawnTime = timeList[0];
@@ -61,6 +61,9 @@ public class SongManager : MonoBehaviour
 
             //set beat type and move increment
             newBeat.GetComponent<MusicBeat>().SetBeatType(beatList[0]);
+            //debug hitbox position
+            Debug.Log("Camera box position: " + Camera.main.ViewportToWorldPoint(hitBox.transform.position));
+            Debug.Log("regualr box position: " + hitBox.transform.position);
             newBeat.GetComponent<MusicBeat>().SetMoveIncrement(hitBox.transform.position.x, beatSpeed);
 
             //set beat list and next beat time values
@@ -81,7 +84,7 @@ public class SongManager : MonoBehaviour
         }
 
         //end the level
-        if (levelSong.isPlaying != true)
+        if (levelSong.isPlaying != true && levelTime > 0)
         {
             //TODO: show end screen score stuff I guess
             //but for now just do a debug.log because yeah

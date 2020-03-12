@@ -49,6 +49,9 @@ public class HitManager : MonoBehaviour
         //Vector2 tempPos = transform.position;
         //tempPos.x = randWidth;
         //transform.position = tempPos;
+
+        //debug screen point
+        Debug.Log("Screen position of hitbox: " + Camera.main.WorldToScreenPoint(transform.position));
     }
 
     // Update is called once per frame

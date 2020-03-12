@@ -23,6 +23,7 @@ public class PlayerInput : MonoBehaviour
     //songmanager object
     [SerializeField]
     private GameObject songManager;
+    private AudioSource song;
 
     private void Awake()
     {
@@ -40,6 +41,13 @@ public class PlayerInput : MonoBehaviour
         controls.Test.PressRight.canceled += context => ResetRightBlock();
         controls.Test.SpeedUp.performed += context => FastForward();
         controls.Test.SpeedUp.canceled += context => ResetTime();
+        controls.Test.Start.started += context => StartSong();
+    }
+
+    private void Start()
+    {
+        //save audio source from song manager
+        song = songManager.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -57,14 +65,19 @@ public class PlayerInput : MonoBehaviour
         Time.timeScale = speedScale;
 
         //increase audio pitch
-        songManager.GetComponent<AudioSource>().pitch = speedScale;
+        song.pitch = speedScale;
     }
 
     public void ResetTime()
     {
         //reset time scale and audio pitch
         Time.timeScale = 1.0f;
-        songManager.GetComponent<AudioSource>().pitch = 1.0f;
+        song.pitch = 1.0f;
+    }
+
+    public void StartSong()
+    {
+        song.Play();
     }
 
     public void SetUpBlock()

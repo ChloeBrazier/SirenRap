@@ -57,6 +57,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Start"",
+                    ""type"": ""Button"",
+                    ""id"": ""755a1dca-ab76-456e-baed-30d5e7e5b29e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -213,6 +221,28 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""Speed Up"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bbc53e5e-f8c2-41b8-9de9-62c02b15aa1f"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""da327a05-ac12-44c5-a92a-94dc3fc9f507"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -254,6 +284,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Test_PressLeft = m_Test.FindAction("Press Left", throwIfNotFound: true);
         m_Test_PressRight = m_Test.FindAction("Press Right", throwIfNotFound: true);
         m_Test_SpeedUp = m_Test.FindAction("Speed Up", throwIfNotFound: true);
+        m_Test_Start = m_Test.FindAction("Start", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -308,6 +339,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Test_PressLeft;
     private readonly InputAction m_Test_PressRight;
     private readonly InputAction m_Test_SpeedUp;
+    private readonly InputAction m_Test_Start;
     public struct TestActions
     {
         private @InputMaster m_Wrapper;
@@ -317,6 +349,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @PressLeft => m_Wrapper.m_Test_PressLeft;
         public InputAction @PressRight => m_Wrapper.m_Test_PressRight;
         public InputAction @SpeedUp => m_Wrapper.m_Test_SpeedUp;
+        public InputAction @Start => m_Wrapper.m_Test_Start;
         public InputActionMap Get() { return m_Wrapper.m_Test; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -341,6 +374,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @SpeedUp.started -= m_Wrapper.m_TestActionsCallbackInterface.OnSpeedUp;
                 @SpeedUp.performed -= m_Wrapper.m_TestActionsCallbackInterface.OnSpeedUp;
                 @SpeedUp.canceled -= m_Wrapper.m_TestActionsCallbackInterface.OnSpeedUp;
+                @Start.started -= m_Wrapper.m_TestActionsCallbackInterface.OnStart;
+                @Start.performed -= m_Wrapper.m_TestActionsCallbackInterface.OnStart;
+                @Start.canceled -= m_Wrapper.m_TestActionsCallbackInterface.OnStart;
             }
             m_Wrapper.m_TestActionsCallbackInterface = instance;
             if (instance != null)
@@ -360,6 +396,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @SpeedUp.started += instance.OnSpeedUp;
                 @SpeedUp.performed += instance.OnSpeedUp;
                 @SpeedUp.canceled += instance.OnSpeedUp;
+                @Start.started += instance.OnStart;
+                @Start.performed += instance.OnStart;
+                @Start.canceled += instance.OnStart;
             }
         }
     }
@@ -389,5 +428,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnPressLeft(InputAction.CallbackContext context);
         void OnPressRight(InputAction.CallbackContext context);
         void OnSpeedUp(InputAction.CallbackContext context);
+        void OnStart(InputAction.CallbackContext context);
     }
 }
