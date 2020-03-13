@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class PlayerInput : MonoBehaviour
     [SerializeField]
     private GameObject songManager;
     private AudioSource song;
+
+    //start screen text
+    [SerializeField]
+    private Text startText;
 
     private void Awake()
     {
@@ -77,7 +82,11 @@ public class PlayerInput : MonoBehaviour
 
     public void StartSong()
     {
+        //start the level by playing the song
         song.Play();
+
+        //disable start screen text
+        startText.enabled = false;
     }
 
     public void SetUpBlock()
