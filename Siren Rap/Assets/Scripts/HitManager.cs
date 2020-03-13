@@ -59,6 +59,12 @@ public class HitManager : MonoBehaviour
         {
             comboText.text = "";
         }
+
+        //start changing the background color depending on combo score
+        if (comboScore > 10 && Camera.main.GetComponent<BackgroundPulse>().isChanging != true)
+        {
+            Camera.main.GetComponent<BackgroundPulse>().ChangeColor();
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -82,6 +88,7 @@ public class HitManager : MonoBehaviour
             //count the beat as a missed beat and drop the combo
             collision.gameObject.GetComponent<MusicBeat>().HitBeat(HitType.Miss);
             comboScore = 0;
+            Camera.main.GetComponent<BackgroundPulse>().ResetColor();
         }
     }
 
@@ -101,10 +108,6 @@ public class HitManager : MonoBehaviour
 
             //add to combo and change background color
             comboScore += 1;
-            if(comboScore > 10 && Camera.main.GetComponent<BackgroundPulse>().isChanging != true)
-            {
-                Camera.main.GetComponent<BackgroundPulse>().ChangeColor();
-            }
         }
         else if(beatDistance <= goodRadius)
         {
@@ -116,10 +119,6 @@ public class HitManager : MonoBehaviour
 
             //add to combo and change background color
             comboScore += 1;
-            if (comboScore > 10 && Camera.main.GetComponent<BackgroundPulse>().isChanging != true)
-            {
-                Camera.main.GetComponent<BackgroundPulse>().ChangeColor();
-            }
         }
         else
         {

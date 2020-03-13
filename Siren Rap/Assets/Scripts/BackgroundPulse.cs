@@ -12,7 +12,7 @@ public class BackgroundPulse : MonoBehaviour
     private int colorIndex;
 
     //color change timer and tick
-    private float changeTime = 4.0f;
+    private float changeTime = 8.0f;
     private float changeTick;
 
     //background color
