@@ -101,7 +101,7 @@ public class HitManager : MonoBehaviour
 
             //add to combo and change background color
             comboScore += 1;
-            if(comboScore > 10)
+            if(comboScore > 10 && Camera.main.GetComponent<BackgroundPulse>().isChanging != true)
             {
                 Camera.main.GetComponent<BackgroundPulse>().ChangeColor();
             }
@@ -116,7 +116,7 @@ public class HitManager : MonoBehaviour
 
             //add to combo and change background color
             comboScore += 1;
-            if (comboScore > 10)
+            if (comboScore > 10 && Camera.main.GetComponent<BackgroundPulse>().isChanging != true)
             {
                 Camera.main.GetComponent<BackgroundPulse>().ChangeColor();
             }

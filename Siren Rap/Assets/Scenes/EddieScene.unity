@@ -413,7 +413,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.43943575, g: 0.676819, b: 0.745283, a: 0}
+  m_BackGroundColor: {r: 0.65281236, g: 0.8062854, b: 0.8490566, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -478,13 +478,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorList:
-  - {r: 0.735849, g: 0.3019758, b: 0.601614, a: 0}
-  - {r: 0.9622642, g: 0.31318974, b: 0.31318974, a: 0}
-  - {r: 0.44474363, g: 0.25663045, b: 0.745283, a: 0}
-  - {r: 1, g: 0.80756813, b: 0.25943398, a: 0}
-  - {r: 0.09718761, g: 0.51663417, b: 0.9811321, a: 0}
-  - {r: 0, g: 0.6792453, b: 0.5341585, a: 0}
-  - {r: 0, g: 0.9273834, b: 1, a: 0}
+  - {r: 0.9056604, g: 0.48273405, b: 0.77992547, a: 0}
+  - {r: 0.31372544, g: 0.56259656, b: 0.9607843, a: 0}
+  - {r: 0.6117123, g: 0.40494838, b: 0.9433962, a: 0}
+  isChanging: 0
 --- !u!1001 &725172630
 PrefabInstance:
   m_ObjectHideFlags: 0

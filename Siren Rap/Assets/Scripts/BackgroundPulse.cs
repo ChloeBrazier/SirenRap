@@ -8,8 +8,11 @@ public class BackgroundPulse : MonoBehaviour
     [SerializeField]
     private List<Color> colorList;
 
+    //int for place in the color list
+    private int colorIndex;
+
     //color change timer and tick
-    private float changeTime = 0.5f;
+    private float changeTime = 1.0f;
     private float changeTick;
 
     //background color
@@ -18,8 +21,9 @@ public class BackgroundPulse : MonoBehaviour
     //next color
     private Color nextColor;
 
-    //bool to check if the background color should change
-    private bool isChanging = false;
+    //bools to check if the background color should change
+    public bool isChanging = false;
+    private bool loopChange = false;
 
     // Start is called before the first frame update
     void Start()
@@ -47,17 +51,34 @@ public class BackgroundPulse : MonoBehaviour
 
             //change changing bool to false
             isChanging = false;
+
+            //check if loop bool is true
+            if (loopChange == true)
+            {
+                //change the color again
+                ChangeColor();
+            }
         }
     }
 
     public void ChangeColor()
     {
-        //choose a random color from the color list
-        int randInt = Random.Range(0, colorList.Count);
-        nextColor = colorList[randInt];
+        //increase color index
+        colorIndex++;
 
-        //set color change bool to true
+        //check if it's greater than the number of colors
+        if(colorIndex > (colorList.Count - 1))
+        {
+            //set index to 0
+            colorIndex = 0;
+        }
+
+        //choose a next color from the color list
+        nextColor = colorList[colorIndex];
+
+        //set color change bools to true
         isChanging = true;
+        loopChange = true;
     }
 
     public void ResetColor()
@@ -65,7 +86,8 @@ public class BackgroundPulse : MonoBehaviour
         //set nextColor to initial background color
         nextColor = initialColor;
 
-        //set color changing bool to true
+        //set color changing bool to true and loop to false
         isChanging = true;
+        loopChange = false;
     }
 }
