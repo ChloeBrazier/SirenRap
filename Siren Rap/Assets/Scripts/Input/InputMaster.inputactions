@@ -223,7 +223,7 @@
                 {
                     "name": "",
                     "id": "da327a05-ac12-44c5-a92a-94dc3fc9f507",
-                    "path": "<Keyboard>/anyKey",
+                    "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",

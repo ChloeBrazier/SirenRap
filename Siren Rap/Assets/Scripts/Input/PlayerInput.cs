@@ -64,7 +64,7 @@ public class PlayerInput : MonoBehaviour
     public void FastForward()
     {
         //save speed scale
-        float speedScale = 3.0f;
+        float speedScale = 5.0f;
         
         //increase time scale
         Time.timeScale = speedScale;
@@ -84,6 +84,9 @@ public class PlayerInput : MonoBehaviour
     {
         //start the level by playing the song
         song.Play();
+
+        //set level start bool to true
+        songManager.GetComponent<SongManager>().levelStart = true;
 
         //disable start screen text
         startText.enabled = false;

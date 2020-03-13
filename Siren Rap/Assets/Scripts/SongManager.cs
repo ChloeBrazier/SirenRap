@@ -38,6 +38,9 @@ public class SongManager : MonoBehaviour
     //float for tracking level time
     private float levelTime;
 
+    //bool to check if the level was started
+    public bool levelStart = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -80,8 +83,8 @@ public class SongManager : MonoBehaviour
             
         }
 
-        //end the level
-        if (levelSong.isPlaying != true && levelTime > 0)
+        //end the level if the song isn't playing and the level was started
+        if (levelSong.isPlaying != true && levelStart == true)
         {
             //TODO: show end screen score stuff I guess
             //but for now just do a debug.log because yeah
