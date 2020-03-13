@@ -64,7 +64,7 @@ public class PlayerInput : MonoBehaviour
     public void FastForward()
     {
         //save speed scale
-        float speedScale = 5.0f;
+        float speedScale = 3.0f;
         
         //increase time scale
         Time.timeScale = speedScale;
