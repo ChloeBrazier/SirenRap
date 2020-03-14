@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -47,6 +48,7 @@ public class PlayerInput : MonoBehaviour
         controls.Test.SpeedUp.performed += context => FastForward();
         controls.Test.SpeedUp.canceled += context => ResetTime();
         controls.Test.Start.started += context => StartSong();
+        controls.Test.Reload.started += context => Reload();
     }
 
     private void Start()
@@ -90,6 +92,12 @@ public class PlayerInput : MonoBehaviour
 
         //disable start screen text
         startText.enabled = false;
+    }
+
+    public void Reload()
+    {
+        //reload the scene when the button is pressed
+        SceneManager.LoadScene(0);
     }
 
     public void SetUpBlock()

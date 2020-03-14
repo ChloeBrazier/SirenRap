@@ -65,6 +65,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""c8f01762-3cf7-40af-9223-b3d7974f9e3f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -243,6 +251,28 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""Start"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5a235d9b-d973-42e3-b6a1-b226980387fc"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f6d4459d-d27c-4aad-a17d-472061502aaf"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -285,6 +315,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Test_PressRight = m_Test.FindAction("Press Right", throwIfNotFound: true);
         m_Test_SpeedUp = m_Test.FindAction("Speed Up", throwIfNotFound: true);
         m_Test_Start = m_Test.FindAction("Start", throwIfNotFound: true);
+        m_Test_Reload = m_Test.FindAction("Reload", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -340,6 +371,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Test_PressRight;
     private readonly InputAction m_Test_SpeedUp;
     private readonly InputAction m_Test_Start;
+    private readonly InputAction m_Test_Reload;
     public struct TestActions
     {
         private @InputMaster m_Wrapper;
@@ -350,6 +382,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @PressRight => m_Wrapper.m_Test_PressRight;
         public InputAction @SpeedUp => m_Wrapper.m_Test_SpeedUp;
         public InputAction @Start => m_Wrapper.m_Test_Start;
+        public InputAction @Reload => m_Wrapper.m_Test_Reload;
         public InputActionMap Get() { return m_Wrapper.m_Test; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -377,6 +410,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Start.started -= m_Wrapper.m_TestActionsCallbackInterface.OnStart;
                 @Start.performed -= m_Wrapper.m_TestActionsCallbackInterface.OnStart;
                 @Start.canceled -= m_Wrapper.m_TestActionsCallbackInterface.OnStart;
+                @Reload.started -= m_Wrapper.m_TestActionsCallbackInterface.OnReload;
+                @Reload.performed -= m_Wrapper.m_TestActionsCallbackInterface.OnReload;
+                @Reload.canceled -= m_Wrapper.m_TestActionsCallbackInterface.OnReload;
             }
             m_Wrapper.m_TestActionsCallbackInterface = instance;
             if (instance != null)
@@ -399,6 +435,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Start.started += instance.OnStart;
                 @Start.performed += instance.OnStart;
                 @Start.canceled += instance.OnStart;
+                @Reload.started += instance.OnReload;
+                @Reload.performed += instance.OnReload;
+                @Reload.canceled += instance.OnReload;
             }
         }
     }
@@ -429,5 +468,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnPressRight(InputAction.CallbackContext context);
         void OnSpeedUp(InputAction.CallbackContext context);
         void OnStart(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
     }
 }
