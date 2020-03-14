@@ -11,8 +11,9 @@ public class HitManager : MonoBehaviour
     //the player's score
     private int playerScore;
 
-    //text for score
+    //text for score and combo
     public Text scoreText;
+    public Text comboText;
 
     //queue of actionable beats
     private Queue<MusicBeat> playableNotes;
@@ -41,17 +42,6 @@ public class HitManager : MonoBehaviour
     {
         //create playable notes queue
         playableNotes = new Queue<MusicBeat>();
-
-        //set random position based on screen size for testing
-        //float cameraWidth = (Camera.main.orthographicSize * 2) / Camera.main.aspect;
-        //float randWidth = cameraWidth / 2;
-        //randWidth = Random.Range(-randWidth, randWidth);
-        //Vector2 tempPos = transform.position;
-        //tempPos.x = randWidth;
-        //transform.position = tempPos;
-
-        //debug screen point
-        Debug.Log("Screen position of hitbox: " + Camera.main.WorldToScreenPoint(transform.position));
     }
 
     // Update is called once per frame
@@ -61,6 +51,20 @@ public class HitManager : MonoBehaviour
         scoreText.text = "Score: " + playerScore;
 
         //TODO: check combo score and make the scene react accordingly
+        if(comboScore > 0)
+        {
+            comboText.text = "Combo: " + comboScore;
+        }
+        else
+        {
+            comboText.text = "";
+        }
+
+        //start changing the background color depending on combo score
+        if (comboScore > 10 && Camera.main.GetComponent<BackgroundPulse>().isChanging != true)
+        {
+            Camera.main.GetComponent<BackgroundPulse>().ChangeColor();
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -84,7 +88,7 @@ public class HitManager : MonoBehaviour
             //count the beat as a missed beat and drop the combo
             collision.gameObject.GetComponent<MusicBeat>().HitBeat(HitType.Miss);
             comboScore = 0;
-            Debug.Log("Beat missed after: " + Time.time);
+            Camera.main.GetComponent<BackgroundPulse>().ResetColor();
         }
     }
 
@@ -102,9 +106,8 @@ public class HitManager : MonoBehaviour
             //add to score
             playerScore += 1000;
 
-            //add to combo
+            //add to combo and change background color
             comboScore += 1;
-            Debug.Log("Player Score: " + playerScore + "\nCombo Score: " + comboScore);
         }
         else if(beatDistance <= goodRadius)
         {
@@ -114,17 +117,17 @@ public class HitManager : MonoBehaviour
             //add to score
             playerScore += 500;
 
-            //add to combo
+            //add to combo and change background color
             comboScore += 1;
-            Debug.Log("Player Score: " + playerScore + "\nCombo Score: " + comboScore);
         }
         else
         {
             //miss the beat
             beat.HitBeat(HitType.Miss);
 
-            //drop the combo
+            //drop the combo and reset the background
             comboScore = 0;
+            Camera.main.GetComponent<BackgroundPulse>().ResetColor();
         }
     }
 
@@ -143,8 +146,10 @@ public class HitManager : MonoBehaviour
             }
             else
             {
-                //miss the beat
+                //miss the beat, reset the background, and drop the combo
                 currentBeat.HitBeat(HitType.Miss);
+                Camera.main.GetComponent<BackgroundPulse>().ResetColor();
+                comboScore = 0;
             }
         }
     }
@@ -164,8 +169,10 @@ public class HitManager : MonoBehaviour
             }
             else
             {
-                //miss the beat
+                //miss the beat and reset background and combo
                 currentBeat.HitBeat(HitType.Miss);
+                comboScore = 0;
+                Camera.main.GetComponent<BackgroundPulse>().ResetColor();
             }
         }
     }
@@ -185,8 +192,10 @@ public class HitManager : MonoBehaviour
             }
             else
             {
-                //miss the beat
+                //miss the beat and reset the background and combo
                 currentBeat.HitBeat(HitType.Miss);
+                comboScore = 0;
+                Camera.main.GetComponent<BackgroundPulse>().ResetColor();
             }
         }
     }
@@ -206,8 +215,10 @@ public class HitManager : MonoBehaviour
             }
             else
             {
-                //miss the beat
+                //miss the beat and reset the background and combo
                 currentBeat.HitBeat(HitType.Miss);
+                comboScore = 0;
+                Camera.main.GetComponent<BackgroundPulse>().ResetColor();
             }
         }
     }
