@@ -84,8 +84,9 @@ public class PlayerInput : MonoBehaviour
 
     public void StartSong()
     {
-        //start the level by playing the song
+        //start the level by playing the song and saving the time it starts
         song.Play();
+        songManager.GetComponent<SongTracker>().songTime = (float) AudioSettings.dspTime;
 
         //set level start bool to true
         songManager.GetComponent<SongManager>().levelStart = true;

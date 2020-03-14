@@ -25,8 +25,7 @@ public class SongManager : MonoBehaviour
     public float beatSpeed;
 
     //hitbox object
-    [SerializeField]
-    private GameObject hitBox;
+    public GameObject hitBox;
 
     //canvas object
     [SerializeField]
@@ -79,8 +78,6 @@ public class SongManager : MonoBehaviour
                 //reset level time
                 levelTime = 0f;
             }
-
-            
         }
 
         //end the level if the song isn't playing and the level was started
@@ -89,6 +86,9 @@ public class SongManager : MonoBehaviour
             //TODO: show end screen score stuff I guess
             //but for now just do a debug.log because yeah
             Debug.Log("#LevelIsOverParty");
+
+            //reset background
+            Camera.main.GetComponent<BackgroundPulse>().ResetColor();
         }
 
         //increase level time if there are more notes to spawn

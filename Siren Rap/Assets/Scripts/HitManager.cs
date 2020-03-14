@@ -19,7 +19,7 @@ public class HitManager : MonoBehaviour
     private Queue<MusicBeat> playableNotes;
 
     //int for tracking consecutive hits
-    private int comboScore;
+    public int comboScore;
 
     //radii for hit categories
     public float goodRadius;
@@ -50,7 +50,7 @@ public class HitManager : MonoBehaviour
         //check player score and update UI accordingly
         scoreText.text = "Score: " + playerScore;
 
-        //TODO: check combo score and make the scene react accordingly
+        //check combo score and make the scene react accordingly
         if(comboScore > 0)
         {
             comboText.text = "Combo: " + comboScore;
@@ -58,12 +58,6 @@ public class HitManager : MonoBehaviour
         else
         {
             comboText.text = "";
-        }
-
-        //start changing the background color depending on combo score
-        if (comboScore > 10 && Camera.main.GetComponent<BackgroundPulse>().isChanging != true)
-        {
-            Camera.main.GetComponent<BackgroundPulse>().ChangeColor();
         }
     }
 
@@ -97,11 +91,14 @@ public class HitManager : MonoBehaviour
         //store the distance between the beat and the center of the hitbox
         float beatDistance = Vector2.Distance(beat.gameObject.transform.position, transform.position);
 
+        //create variable to store hit type
+        HitType thisHit;
+
         //check the distance to determine score
         if (beatDistance <= perfectRadius)
         {
             //hit the beat as a perfect note
-            beat.HitBeat(HitType.Perfect);
+            thisHit = HitType.Perfect;
 
             //add to score
             playerScore += 1000;
@@ -112,7 +109,7 @@ public class HitManager : MonoBehaviour
         else if(beatDistance <= goodRadius)
         {
             //hit the beat as a good note
-            beat.HitBeat(HitType.Good);
+            thisHit = HitType.Good;
 
             //add to score
             playerScore += 500;
@@ -123,12 +120,15 @@ public class HitManager : MonoBehaviour
         else
         {
             //miss the beat
-            beat.HitBeat(HitType.Miss);
+            thisHit = HitType.Miss;
 
             //drop the combo and reset the background
             comboScore = 0;
             Camera.main.GetComponent<BackgroundPulse>().ResetColor();
         }
+
+        //hit the beat
+        beat.HitBeat(thisHit);
     }
 
     public void CheckUp()

@@ -749,6 +749,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 760254038}
   comboText: {fileID: 1409635382}
+  comboScore: 0
   goodRadius: 0.5
   perfectRadius: 0.25
 --- !u!212 &1271005925
@@ -998,6 +999,7 @@ GameObject:
   - component: {fileID: 1507439120}
   - component: {fileID: 1507439119}
   - component: {fileID: 1507439121}
+  - component: {fileID: 1507439122}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1249,7 +1251,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 59b79d3ad47988f4f951bf89a8b4ca6f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.073
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1333,6 +1335,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1507439122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507439118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 138de69ff57937846b20ac49bc081f2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatsPerMinute: 120
+  songTime: 0
 --- !u!1 &1564460610
 GameObject:
   m_ObjectHideFlags: 0
