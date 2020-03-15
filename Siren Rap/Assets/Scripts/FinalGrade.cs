@@ -54,17 +54,7 @@ public class FinalGrade : TallyParent
     // Update is called once per frame
     void Update()
     {
-        if (tallyTick <= 1)
-        {
-            //increment timer tick
-            tallyTick += Time.deltaTime / tallyTime;
-        }
-        else
-        {
-            //TODO: add screen shake?
-
-            //set grade image
-            gradeImage.sprite = gradeList[gradeIndex];
-        }
+        //set grade image
+        gradeImage.sprite = gradeList[gradeIndex];
     }
 }

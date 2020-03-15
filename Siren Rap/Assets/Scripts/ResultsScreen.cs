@@ -14,12 +14,16 @@ public class ResultsScreen : MonoBehaviour
     private float fadeTick;
 
     //fade index
-    private int fadeIndex;
+    private int fadeIndex = 0;
+
+    //opaque color
+    private Color opaque;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        //save opaque color of first object in fadelist
+        opaque = new Color(fadeList[fadeIndex].GetComponent<Text>().color.r, fadeList[fadeIndex].GetComponent<Text>().color.g, fadeList[fadeIndex].GetComponent<Text>().color.b, 1f);
     }
 
     // Update is called once per frame
@@ -28,28 +32,34 @@ public class ResultsScreen : MonoBehaviour
         //check fade timer
         if (fadeTick <= 1)
         {
+            //lerp transparency of current fading object
+            fadeList[fadeIndex].GetComponent<Text>().color = Color.Lerp(fadeList[fadeIndex].GetComponent<Text>().color, opaque, fadeTick);
+
             //increment fade tick
             fadeTick += Time.deltaTime / fadeTimer;
         }
         else
         {
-            //enable tallying for the faded-in text
-            if (fadeIndex != 0)
+            if(fadeIndex < fadeList.Count - 1)
             {
-                fadeList[fadeIndex - 1].GetComponent<TallyParent>().enabled = true;
-            }
+                //check if this is the first object to be lerped
+                if(fadeIndex == 0)
+                {
+                    fadeList[fadeIndex].GetComponent<TallyParent>().enabled = true;
+                }
 
-            //increment fade index
-            fadeIndex++;
+                //increment fade index
+                fadeIndex++;
 
-            //make sure not to go out of range
-            if(fadeIndex <= fadeList.Count - 1)
-            {
                 //start fading in the next thing of text
-                fadeList[fadeIndex].GetComponent<Text>().CrossFadeAlpha(1f, 1f, false);
+                opaque = new Color(fadeList[fadeIndex].GetComponent<Text>().color.r, fadeList[fadeIndex].GetComponent<Text>().color.g, fadeList[fadeIndex].GetComponent<Text>().color.b, 1f);
 
                 //reset fade timer
                 fadeTick = 0f;
+            }
+            else
+            {
+                Destroy(this);
             }
         }
     }

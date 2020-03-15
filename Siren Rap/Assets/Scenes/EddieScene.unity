@@ -423,6 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8b4c0ae6ada4b345958f0e981d2d8b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextActivated: {fileID: 1141919168}
   tallyNoise: {fileID: 1376957750}
 --- !u!1 &532336129
 GameObject:
@@ -800,7 +801,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -116.8}
-  m_SizeDelta: {x: 276, y: 47}
+  m_SizeDelta: {x: 391.83, y: 47}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1132743429
 MonoBehaviour:
@@ -932,6 +933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4135f070ee7d4b9428223c842239bfc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextActivated: {fileID: 1511584862}
   tallyNoise: {fileID: 1376957750}
 --- !u!1 &1223247801
 GameObject:
