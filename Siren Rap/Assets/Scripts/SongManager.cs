@@ -40,6 +40,9 @@ public class SongManager : MonoBehaviour
     //bool to check if the level was started
     public bool levelStart = false;
 
+    //level end UI gameobject
+    public GameObject endUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -89,6 +92,9 @@ public class SongManager : MonoBehaviour
 
             //reset background
             Camera.main.GetComponent<BackgroundPulse>().ResetColor();
+
+            //activate end UI
+            endUI.SetActive(true);
         }
 
         //increase level time if there are more notes to spawn

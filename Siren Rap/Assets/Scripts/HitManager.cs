@@ -9,7 +9,7 @@ public class HitManager : MonoBehaviour
     private InputMaster controls;
 
     //the player's score
-    private int playerScore;
+    public int playerScore;
 
     //text for score and combo
     public Text scoreText;
@@ -24,6 +24,9 @@ public class HitManager : MonoBehaviour
     //radii for hit categories
     public float goodRadius;
     public float perfectRadius;
+
+    //values for highest combo and current combo
+    public int highestCombo;
 
     private void Awake()
     {
@@ -104,7 +107,7 @@ public class HitManager : MonoBehaviour
             playerScore += 1000;
 
             //add to combo and change background color
-            comboScore += 1;
+            comboScore++;
         }
         else if(beatDistance <= goodRadius)
         {
@@ -115,7 +118,7 @@ public class HitManager : MonoBehaviour
             playerScore += 500;
 
             //add to combo and change background color
-            comboScore += 1;
+            comboScore++;
         }
         else
         {
@@ -125,6 +128,12 @@ public class HitManager : MonoBehaviour
             //drop the combo and reset the background
             comboScore = 0;
             Camera.main.GetComponent<BackgroundPulse>().ResetColor();
+        }
+
+        //check if current combo is greater than the highest combo and set it accordingly
+        if(comboScore > highestCombo)
+        {
+            highestCombo = comboScore;
         }
 
         //hit the beat
