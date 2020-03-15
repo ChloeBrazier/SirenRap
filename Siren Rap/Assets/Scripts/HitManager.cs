@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class HitManager : MonoBehaviour
 {
@@ -34,10 +35,10 @@ public class HitManager : MonoBehaviour
         controls = new InputMaster();
 
         //hook up controls
-        controls.Test.PressUp.started += context => CheckUp();
-        controls.Test.PressDown.started += context => CheckDown();
-        controls.Test.PressLeft.started += context => CheckLeft();
-        controls.Test.PressRight.started += context => CheckRight();
+        controls.Test.PressUp.started += CheckUp;
+        controls.Test.PressDown.started += CheckDown;
+        controls.Test.PressLeft.started += CheckLeft;
+        controls.Test.PressRight.started += CheckRight;
     }
 
     // Start is called before the first frame update
@@ -140,7 +141,7 @@ public class HitManager : MonoBehaviour
         beat.HitBeat(thisHit);
     }
 
-    public void CheckUp()
+    public void CheckUp(InputAction.CallbackContext ctx)
     {
         //check the currently playable beat to see if it's an up beat
         if(playableNotes.Count > 0)
@@ -163,7 +164,7 @@ public class HitManager : MonoBehaviour
         }
     }
 
-    public void CheckDown()
+    public void CheckDown(InputAction.CallbackContext ctx)
     {
         //check the currently playable beat to see if it's a down beat
         if (playableNotes.Count > 0)
@@ -186,7 +187,7 @@ public class HitManager : MonoBehaviour
         }
     }
 
-    public void CheckLeft()
+    public void CheckLeft(InputAction.CallbackContext ctx)
     {
         //check the currently playable beat to see if it's a left beat
         if (playableNotes.Count > 0)
@@ -209,7 +210,7 @@ public class HitManager : MonoBehaviour
         }
     }
 
-    public void CheckRight()
+    public void CheckRight(InputAction.CallbackContext ctx)
     {
         //check the currently playable beat to see if it's a right beat
         if (playableNotes.Count > 0)
