@@ -38,12 +38,12 @@ public class FinalScore : TallyParent
         {
             //increase score text value
             tempText += scoreIncrement;
-            scoreText.text = "Final Score: " + tempText;
+            scoreText.text = "Final Score:    " + tempText;
         }
         else
         {
             //set score text to exact score
-            scoreText.text = "Final Score: " + GameObject.Find("Miss Box").GetComponent<HitManager>().playerScore;
+            scoreText.text = "Final Score:    " + GameObject.Find("Miss Box").GetComponent<HitManager>().playerScore;
 
             //stop the tally noise
             tallyNoise.Stop();

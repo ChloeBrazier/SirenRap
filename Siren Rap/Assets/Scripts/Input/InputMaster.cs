@@ -73,6 +73,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Quit"",
+                    ""type"": ""Button"",
+                    ""id"": ""0de72e2a-4bf5-4305-bbe5-f482b0f7bbb5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -273,6 +281,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ec56102-8e61-44b4-aae9-eaf56c28d8b9"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -316,6 +335,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Test_SpeedUp = m_Test.FindAction("Speed Up", throwIfNotFound: true);
         m_Test_Start = m_Test.FindAction("Start", throwIfNotFound: true);
         m_Test_Reload = m_Test.FindAction("Reload", throwIfNotFound: true);
+        m_Test_Quit = m_Test.FindAction("Quit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -372,6 +392,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Test_SpeedUp;
     private readonly InputAction m_Test_Start;
     private readonly InputAction m_Test_Reload;
+    private readonly InputAction m_Test_Quit;
     public struct TestActions
     {
         private @InputMaster m_Wrapper;
@@ -383,6 +404,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @SpeedUp => m_Wrapper.m_Test_SpeedUp;
         public InputAction @Start => m_Wrapper.m_Test_Start;
         public InputAction @Reload => m_Wrapper.m_Test_Reload;
+        public InputAction @Quit => m_Wrapper.m_Test_Quit;
         public InputActionMap Get() { return m_Wrapper.m_Test; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -413,6 +435,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Reload.started -= m_Wrapper.m_TestActionsCallbackInterface.OnReload;
                 @Reload.performed -= m_Wrapper.m_TestActionsCallbackInterface.OnReload;
                 @Reload.canceled -= m_Wrapper.m_TestActionsCallbackInterface.OnReload;
+                @Quit.started -= m_Wrapper.m_TestActionsCallbackInterface.OnQuit;
+                @Quit.performed -= m_Wrapper.m_TestActionsCallbackInterface.OnQuit;
+                @Quit.canceled -= m_Wrapper.m_TestActionsCallbackInterface.OnQuit;
             }
             m_Wrapper.m_TestActionsCallbackInterface = instance;
             if (instance != null)
@@ -438,6 +463,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Reload.started += instance.OnReload;
                 @Reload.performed += instance.OnReload;
                 @Reload.canceled += instance.OnReload;
+                @Quit.started += instance.OnQuit;
+                @Quit.performed += instance.OnQuit;
+                @Quit.canceled += instance.OnQuit;
             }
         }
     }
@@ -469,5 +497,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnSpeedUp(InputAction.CallbackContext context);
         void OnStart(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
+        void OnQuit(InputAction.CallbackContext context);
     }
 }

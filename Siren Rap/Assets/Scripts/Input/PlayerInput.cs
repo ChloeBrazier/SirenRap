@@ -52,6 +52,7 @@ public class PlayerInput : MonoBehaviour
         controls.Test.SpeedUp.canceled += ResetTime;
         controls.Test.Start.started += StartSong;
         controls.Test.Reload.started += Reload;
+        controls.Test.Quit.started += QuitGame;
     }
 
     private void Start()
@@ -114,6 +115,12 @@ public class PlayerInput : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void Reload()
+    {
+        //reload the scene when the button is pressed
+        SceneManager.LoadScene(0);
+    }
+
     public void PauseLevel(InputAction.CallbackContext ctx)
     {
         //set timescale to 0
@@ -125,6 +132,16 @@ public class PlayerInput : MonoBehaviour
         //switch action to unpause level
         controls.Test.Start.started -= PauseLevel;
         controls.Test.Start.started += ResetTime;
+    }
+
+    public void QuitGame(InputAction.CallbackContext ctx)
+    {
+        Application.Quit();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     public void SetUpBlock(InputAction.CallbackContext ctx)

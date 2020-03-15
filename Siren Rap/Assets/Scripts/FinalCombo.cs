@@ -37,12 +37,12 @@ public class FinalCombo : TallyParent
         {
             //increase score text value
             tempText += comboIncrement;
-            comboText.text = "Highest Combo: " + tempText;
+            comboText.text = "Highest Combo:    " + tempText;
         }
         else
         {
             //set combo text to exact combo
-            comboText.text = "Highest Combo: " + GameObject.Find("Miss Box").GetComponent<HitManager>().highestCombo;
+            comboText.text = "Highest Combo:    " + GameObject.Find("Miss Box").GetComponent<HitManager>().highestCombo;
 
             //stop the tally noise
             tallyNoise.Stop();
