@@ -159,6 +159,9 @@ MonoBehaviour:
   rightSquare: {fileID: 1223247801}
   songManager: {fileID: 1507439118}
   startText: {fileID: 1869489570}
+  pauseClips:
+  - {fileID: 8300000, guid: a8aa4f28d6cddd84d8be2c8cd147dc64, type: 3}
+  - {fileID: 8300000, guid: 5248d560eb7f7364fb5822bdc1379611, type: 3}
 --- !u!4 &35167987
 Transform:
   m_ObjectHideFlags: 0

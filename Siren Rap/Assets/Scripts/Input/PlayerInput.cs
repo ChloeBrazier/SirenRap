@@ -31,6 +31,22 @@ public class PlayerInput : MonoBehaviour
     [SerializeField]
     private Text startText;
 
+    //bool to check if paused and changing time
+    private bool paused = false;
+    private bool changeTime = false;
+
+    //timer for slowing down time when pausing
+    private float pauseTime = 0.85f;
+    private float pauseTick;
+
+    //list of pause clips
+    [SerializeField]
+    private List<AudioClip> pauseClips;
+
+    //audio source pitch and timescale increments
+    private float pitchIncrement;
+    private float timeScaleIncrement;
+
     private void Awake()
     {
         //initialize controls
@@ -57,14 +73,67 @@ public class PlayerInput : MonoBehaviour
 
     private void Start()
     {
-        //save audio source from song manager
+        //save audio source from song manager and its pitch increment for pausing
         song = songManager.GetComponent<AudioSource>();
+        pitchIncrement = pauseTime / song.pitch;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //check if timescale is being changed
+        if(changeTime == true && pauseTick <= 1)
+        {
+            //check if the game is paused
+            if(paused)
+            {
+                //decrease audio pitch
+                song.pitch *= pitchIncrement;
+                if(song.pitch <= 0.01)
+                {
+                    song.pitch = 0;
+                }
+
+                //decrease time scale
+                Time.timeScale *= timeScaleIncrement;
+                if(Time.timeScale <= 0.01)
+                {
+                    Time.timeScale = 0;
+                }
+            }
+            else
+            {
+                //increase audio pitch
+                song.pitch += pitchIncrement;
+                if (song.pitch >= 1)
+                {
+                    song.pitch = 1;
+                }
+
+                //increase time scale
+                Time.timeScale += timeScaleIncrement;
+                if (Time.timeScale >= 1)
+                {
+                    Time.timeScale = 1;
+                }
+            }
+
+            //increment time tick
+            pauseTick += Time.deltaTime / pauseTime;
+        }
+        else if(changeTime == false)
+        {
+            //save current timescale for timescale increment
+            timeScaleIncrement = pauseTime / Time.timeScale;
+        }
+        else
+        {
+            //reset pause tick
+            pauseTick = 0f;
+
+            //set change time to false
+            changeTime = false;
+        }
     }
 
     public void FastForward(InputAction.CallbackContext ctx)
@@ -81,13 +150,24 @@ public class PlayerInput : MonoBehaviour
 
     public void ResetTime(InputAction.CallbackContext ctx)
     {
-        //reset time scale and audio pitch
-        Time.timeScale = 1.0f;
-        song.pitch = 1.0f;
-
         //switch pause action
-        controls.Test.Start.started -= ResetTime;
-        controls.Test.Start.started += PauseLevel;
+        if(paused == true)
+        {
+            //play unpause clip
+            AudioSource.PlayClipAtPoint(pauseClips[1], Camera.main.transform.position);
+
+            //adjust pause settings
+            paused = false;
+            changeTime = true;
+            controls.Test.Start.started -= ResetTime;
+            controls.Test.Start.started += PauseLevel;
+        }
+        else
+        {
+            //reset time scale and audio pitch
+            Time.timeScale = 1.0f;
+            song.pitch = 1.0f;
+        }
     }
 
     public void StartSong(InputAction.CallbackContext ctx)
@@ -105,7 +185,7 @@ public class PlayerInput : MonoBehaviour
         //prevent the level from being restarted by pressing start again
         controls.Test.Start.started -= StartSong;
 
-        //TODO: hook up pause event to start button
+        //hook up pause event to start button
         controls.Test.Start.started += PauseLevel;
     }
 
@@ -123,13 +203,22 @@ public class PlayerInput : MonoBehaviour
 
     public void PauseLevel(InputAction.CallbackContext ctx)
     {
+        //set paused bool to true
+        paused = true;
+
+        //set slowing time bool to true
+        changeTime = true;
+
+        //play pause clip
+        AudioSource.PlayClipAtPoint(pauseClips[0], Camera.main.transform.position);
+
         //set timescale to 0
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
 
         //set pitch of audio components to 0
-        song.pitch = 0;
+        //song.pitch = 0;
 
-        //switch action to unpause level
+        //switch action to make it unpause level
         controls.Test.Start.started -= PauseLevel;
         controls.Test.Start.started += ResetTime;
     }
