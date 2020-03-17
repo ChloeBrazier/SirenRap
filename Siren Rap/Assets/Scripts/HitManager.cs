@@ -138,8 +138,7 @@ public class HitManager : MonoBehaviour
         }
 
         //hit the beat
-        beat.HitBeat(thisHit);
-    }
+        beat.HitBeat(thisHit);    }
 
     public void CheckUp(InputAction.CallbackContext ctx)
     {

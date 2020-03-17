@@ -151,6 +151,9 @@ public class MusicBeat : MonoBehaviour
                 //spawn hit message with a type of miss
                 SpawnHitMessage(HitType.Miss);
 
+                //shake the screen
+                Camera.main.GetComponent<ScreenShake>().Shake(0.3f, 0.1f, 0.2f);
+
                 break;
         }
     }
