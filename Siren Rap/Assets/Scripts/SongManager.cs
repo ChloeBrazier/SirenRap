@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class SongManager : MonoBehaviour
 {
-    //list of beats used for the song
+    //list of beats used for the song and the initial beat number
     [Tooltip("These are the beats for normal mode, with beat type respresnting the input the player must make to hit the beat")]
     public List<BeatType> beatList;
+    public int beatNumber;
 
     //music beat prefab to spawn
     public GameObject musicBeat;
@@ -46,9 +47,11 @@ public class SongManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //start playing the level song
+        //save the level song
         levelSong = GetComponent<AudioSource>();
-        //levelSong.Play();
+
+        //save beat number
+        beatNumber = beatList.Count;
 
         //set the first spawn time
         nextSpawnTime = timeList[0];

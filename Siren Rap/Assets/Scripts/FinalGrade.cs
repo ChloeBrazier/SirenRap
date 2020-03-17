@@ -23,23 +23,26 @@ public class FinalGrade : TallyParent
     // Start is called before the first frame update
     void Start()
     {
+        //calculate the final score
+        int finalGrade = CalculateGrade(GameObject.Find("Miss Box").GetComponent<HitManager>().playerScore, GameObject.Find("Miss Box").GetComponent<HitManager>().highestCombo);
+
         //set grade index
-        if(GameObject.Find("Miss Box").GetComponent<HitManager>().playerScore > 187150)
+        if(finalGrade >= 9)
         {
             //set index for s rank
             gradeIndex = 0;
         }
-        else if(GameObject.Find("Miss Box").GetComponent<HitManager>().playerScore > 177300)
+        else if(finalGrade >= 8)
         {
             //set index for a rank
             gradeIndex = 1;
         }
-        else if (GameObject.Find("Miss Box").GetComponent<HitManager>().playerScore > 157600)
+        else if (finalGrade >= 6)
         {
             //set index for b rank
             gradeIndex = 2;
         }
-        else if (GameObject.Find("Miss Box").GetComponent<HitManager>().playerScore > 137900)
+        else if (finalGrade >= 4)
         {
             //set index for c rank
             gradeIndex = 3;
@@ -56,5 +59,56 @@ public class FinalGrade : TallyParent
     {
         //set grade image
         gradeImage.sprite = gradeList[gradeIndex];
+    }
+
+    public int CalculateGrade(float finalScore, float highestCombo)
+    {
+        //temporary int to store final grade score
+        int gradeScore = 0;
+
+        //check highest combo and add to grade score
+        if (highestCombo >= 50)
+        {
+            //add 3 points to final grade
+            gradeScore += 3;
+        }
+        else if(highestCombo >= 30)
+        {
+            //add 2 points to final grade
+            gradeScore += 2;
+        }
+        else if(highestCombo >= 10)
+        {
+            //add 1 point to final grade
+            gradeScore++;
+        }
+
+        //store division of final score
+        float scoreDivision = (GameObject.Find("GameManager").GetComponent<SongManager>().beatNumber * 1000) / 6;
+
+        //check final score and add to grade score
+        if(finalScore >= (scoreDivision * 5))
+        {
+            //add 7 points to final grade
+            gradeScore += 7;
+        }
+        else if(finalScore >= (scoreDivision * 4))
+        {
+            //add 6 points to final grade
+            gradeScore += 6;
+        }
+        else if (finalScore >= (scoreDivision * 3))
+        {
+            //add 5 points to final grade
+            gradeScore += 5;
+        }
+        else if (finalScore >= (scoreDivision * 2))
+        {
+            //add 1 point to final grade
+            gradeScore++;
+        }
+
+
+        return gradeScore;
     }
 }
