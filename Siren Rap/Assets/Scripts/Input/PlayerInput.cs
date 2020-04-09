@@ -31,6 +31,10 @@ public class PlayerInput : MonoBehaviour
     [SerializeField]
     private Text startText;
 
+    //pause UI
+    [SerializeField]
+    private GameObject pauseUI;
+
     //bool to check if paused and changing time
     private bool paused = false;
     private bool changeTime = false;
@@ -156,6 +160,9 @@ public class PlayerInput : MonoBehaviour
             //play unpause clip
             AudioSource.PlayClipAtPoint(pauseClips[1], Camera.main.transform.position);
 
+            //deactivate pause UI
+            pauseUI.SetActive(false);
+
             //adjust pause settings
             paused = false;
             changeTime = true;
@@ -217,6 +224,9 @@ public class PlayerInput : MonoBehaviour
 
         //set pitch of audio components to 0
         //song.pitch = 0;
+
+        //activate pause UI
+        pauseUI.SetActive(true);
 
         //switch action to make it unpause level
         controls.Test.Start.started -= PauseLevel;
